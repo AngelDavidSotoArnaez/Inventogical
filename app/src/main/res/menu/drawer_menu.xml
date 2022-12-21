@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/gruop_menu1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@id/primerFragment"
+            android:icon="@drawable/ic_home"
+            android:title="Inicio" />
+    </group>
+
+    <group
+        android:id="@+id/gruop_menu2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/Inventario"
+            android:title="Inventario">
+            <menu>
+                <item
+                    android:id="@id/inventarioFragment"
+                    android:icon="@drawable/ic_inentario"
+                    android:title="Inventario" />
+
+                <item
+                    android:id="@id/addFragment"
+                    android:icon="@drawable/ic_pedido"
+                    android:title="Agregar" />
+
+            </menu>
+        </item>
+    </group>
+
+</menu>

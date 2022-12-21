@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/primerFragment">
+    <fragment
+        android:id="@+id/primerFragment"
+        android:name="com.angel.inventogical.Inicio"
+        android:label="Ver. 1"
+        tools:layout="@layout/fragment_inicio">
+        <action
+            android:id="@+id/action_primerFragment_to_addFragment"
+            app:destination="@id/addFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_primerFragment_to_inventarioFragment"
+            app:destination="@id/inventarioFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_primerFragment_to_tasaFragment"
+            app:destination="@id/tasaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/primerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.angel.inventogical.AddFragment"
+        android:label="Añadir Articulo"
+        tools:layout="@layout/fragment_add">
+        <action
+            android:id="@+id/action_addFragment_to_primerFragment"
+            app:destination="@id/primerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/primerFragment" />
+        <action
+            android:id="@+id/action_addFragment_to_inventarioFragment"
+            app:destination="@id/inventarioFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/inventarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventarioFragment"
+        android:name="com.angel.inventogical.InventarioFragment"
+        android:label="Inventario"
+        tools:layout="@layout/fragment_inventario">
+        <action
+            android:id="@+id/action_inventarioFragment_to_primerFragment"
+            app:destination="@id/primerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/primerFragment" />
+        <action
+            android:id="@+id/action_inventarioFragment_to_verInventarioFragment"
+            app:destination="@id/verInventarioFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/inventarioFragment" />
+        <action
+            android:id="@+id/action_inventarioFragment_to_addFragment"
+            app:destination="@id/addFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/inventarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verInventarioFragment"
+        android:name="com.angel.inventogical.VerInventarioFragment"
+        android:label="fragment_ver_inventario"
+        tools:layout="@layout/fragment_ver_inventario">
+        <action
+            android:id="@+id/action_verInventarioFragment_to_inventarioFragment"
+            app:destination="@id/inventarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tasaFragment"
+        android:name="com.angel.inventogical.TasaFragment"
+        android:label="Tasas"
+        tools:layout="@layout/fragment_tasa">
+        <action
+            android:id="@+id/action_tasaFragment_to_primerFragment"
+            app:destination="@id/primerFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".InventarioFragment">
+
+    <EditText
+        android:id="@+id/etBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:autofillHints="name"
+        android:drawableStart="@drawable/ic_buscar"
+        android:hint="Buscar"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true"
+        tools:ignore="LabelFor"
+        android:imeOptions="actionDone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvInventario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvInventario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No hay inventario"
+        android:visibility="invisible" />
+
+</LinearLayout>
