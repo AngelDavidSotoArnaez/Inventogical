@@ -1,12 +1,13 @@
 package com.angel.inventogical
 
 import android.app.AlertDialog
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,9 +29,68 @@ class InventarioFragment : Fragment(), InventarioAdapter.OnItemClickListener {
 
     private var tasa: Double = 0.0
 
+    private lateinit var searchView: SearchView
+    private lateinit var menuItem: MenuItem
+    private lateinit var searchManager: SearchManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        setHasOptionsMenu(true)
+
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_inventario, menu)
+
+        menuItem = menu.findItem(R.id.searchId)
+
+        searchView = MenuItemCompat.getActionView(menuItem) as SearchView
+        searchView.isIconified = true
+
+        searchManager = requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                buscarItem(query)
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                buscarItem(newText)
+
+                return true
+            }
+        })
+
+        val itemAdd = menu.findItem(R.id.itemAdd)
+
+        itemAdd.setOnMenuItemClickListener {
+            findNavController().navigate(R.id.action_inventarioFragment_to_addFragment)
+            true
+        }
+
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun buscarItem(Text: String?) {
+        if (Text != null) {
+            if (Text.isNotEmpty()) {
+                val articuloFiltrado =
+                    articulos.filter { articulo -> articulo.nombre.contains(Text.toString()) }
+                adapter.actualizarArticulos(articuloFiltrado)
+            } else {
+                adapter.actualizarArticulos(articulos)
+            }
+        } else {
+            adapter.actualizarArticulos(articulos)
+        }
     }
 
     override fun onCreateView(
@@ -48,33 +108,12 @@ class InventarioFragment : Fragment(), InventarioAdapter.OnItemClickListener {
 
         mostrarInventario()
 
-        binding.etBuscar.addTextChangedListener { filtrarArticulo ->
-            val articuloFiltrado =
-                articulos.filter { articulo -> articulo.nombre.contains(filtrarArticulo.toString()) }
-            adapter.actualizarArticulos(articuloFiltrado)
-        }
-
-        //Funcion para eliminar el icono de la lupa
-        binding.etBuscar.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                binding.etBuscar.setCompoundDrawables(null, null, null, null)
-            } else if (!hasFocus) {
-                if (binding.etBuscar.text.isEmpty()) {
-                    binding.etBuscar.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_buscar,
-                        0,
-                        0,
-                        0)
-                }
-            }
-        }
-
         return binding.root
     }
 
     fun mostrarInventario() {
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!lo copiaste del otro, editalo
         if (conSQL.selArtiulosNum()) {
-            binding.etBuscar.visibility = View.VISIBLE
             binding.rvInventario.visibility = View.VISIBLE
             binding.tvInventario.visibility = View.INVISIBLE
 
@@ -87,7 +126,6 @@ class InventarioFragment : Fragment(), InventarioAdapter.OnItemClickListener {
             binding.rvInventario.setHasFixedSize(true)
 
         } else {
-            binding.etBuscar.visibility = View.INVISIBLE
             binding.rvInventario.visibility = View.INVISIBLE
             binding.tvInventario.visibility = View.VISIBLE
         }

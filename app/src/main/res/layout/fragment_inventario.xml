@@ -7,20 +7,6 @@
     android:orientation="vertical"
     tools:context=".InventarioFragment">
 
-    <EditText
-        android:id="@+id/etBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:autofillHints="name"
-        android:drawableStart="@drawable/ic_buscar"
-        android:hint="Buscar"
-        android:inputType="text"
-        android:maxLines="1"
-        android:singleLine="true"
-        tools:ignore="LabelFor"
-        android:imeOptions="actionDone"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvInventario"
         android:layout_width="match_parent"

@@ -24,7 +24,7 @@
 
                 <item
                     android:id="@id/addFragment"
-                    android:icon="@drawable/ic_pedido"
+                    android:icon="@drawable/ic_agregar"
                     android:title="Agregar" />
 
             </menu>

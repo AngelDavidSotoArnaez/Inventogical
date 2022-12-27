@@ -50,7 +50,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:drawableTop="@drawable/ic_pedido"
+            android:drawableTop="@drawable/ic_agregar"
             android:elevation="50dp"
             android:text="Agregar"
             android:textColor="#2C313C" />
